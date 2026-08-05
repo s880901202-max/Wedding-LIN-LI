@@ -160,6 +160,24 @@
                 </div>
             </div>
 
+            <!-- Preface / Invitation Message -->
+            <div class="my-8 max-w-xl mx-auto p-6 sm:p-8 rounded-3xl bg-white/70 backdrop-blur-md border border-white/90 shadow-soft-glow text-center text-morandi-dark leading-relaxed">
+                <p class="font-medium text-morandi-warm text-base sm:text-lg mb-3">親愛的家人朋友們 :</p>
+                <p class="text-sm sm:text-base text-morandi-dark/90 mb-3">
+                    經過5年時間的"慢跑" ，我們做了重要的決定，就是 ~ 我們要結婚啦 !
+                </p>
+                <p class="text-sm sm:text-base text-morandi-dark/80 mb-5">
+                    誠摯地邀請最重要的你們前來參加我們的幸福饗宴，一同分享及見證這份喜悅與幸福，讓我們的大囍之日更有意義 !
+                </p>
+                <div class="pt-4 border-t border-stone-200/60 space-y-2">
+                    <p class="text-xs sm:text-sm text-morandi-dark/70">
+                        為了方便我們統計出席人數與安排座位，邀請您動動手指幫我們填寫以下資訊
+                    </p>
+                    <p class="text-sm sm:text-base font-medium text-morandi-warm">期待您的蒞臨❤</p>
+                    <p class="font-medium text-base sm:text-lg text-morandi-dark tracking-wider pt-1">義哲 & 念蓁 敬邀</p>
+                </div>
+            </div>
+
             <!-- Decorative Fine Line -->
             <div class="w-24 h-[1px] bg-gradient-to-r from-transparent via-morandi-warm/60 to-transparent mx-auto my-8"></div>
 
@@ -372,6 +390,8 @@
                             <option value="1位">1位</option>
                             <option value="2位">2位</option>
                             <option value="3位">3位</option>
+                            <option value="4位">4位</option>
+                            <option value="5位或以上">5位或以上</option>
                         </select>
                     </div>
                     <div>
@@ -394,21 +414,21 @@
                             <span class="text-xs font-medium text-morandi-dark">需要，請寄紙本喜帖給我</span>
                         </label>
                         <label class="flex items-center p-3 rounded-xl border border-stone-200 bg-white cursor-pointer hover:border-morandi-warm transition">
-                            <input type="radio" name="entry.2074213116" value="不需要，電子喜帖即可" class="accent-[#d4a373] mr-2">
-                            <span class="text-xs font-medium text-morandi-dark">不需要，電子喜帖即可</span>
+                            <input type="radio" name="entry.2074213116" value="不需要" class="accent-[#d4a373] mr-2">
+                            <span class="text-xs font-medium text-morandi-dark">不需要</span>
                         </label>
                     </div>
                 </div>
 
                 <!-- 郵遞區號與寄送地址 / 祝福小語 -->
                 <div class="grid md:grid-cols-3 gap-4">
-                    <div>
-                        <label class="block text-xs uppercase font-semibold text-morandi-dark tracking-wider mb-2">郵遞區號</label>
-                        <input type="text" name="entry.1228361035" placeholder="例：63222" class="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:outline-none focus:ring-2 focus:ring-morandi-warm/50 text-sm">
+                    <div class="md:col-span-1">
+                        <label class="block text-xs uppercase font-semibold text-morandi-dark tracking-wider mb-2">郵遞區號/寄送地址</label>
+                        <input type="text" name="entry.1228361035" placeholder="例：63222 雲林縣..." class="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:outline-none focus:ring-2 focus:ring-morandi-warm/50 text-sm">
                     </div>
                     <div class="md:col-span-2">
-                        <label class="block text-xs uppercase font-semibold text-morandi-dark tracking-wider mb-2">寄送地址 / 祝福小語</label>
-                        <input type="text" id="blessing-input" name="entry.1589999982" placeholder="請填寫收件地址或寫下對新人的祝福..." class="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:outline-none focus:ring-2 focus:ring-morandi-warm/50 text-sm">
+                        <label class="block text-xs uppercase font-semibold text-morandi-dark tracking-wider mb-2">祝福小語</label>
+                        <input type="text" id="blessing-input" name="entry.1589999982" placeholder="請寫下對新人的祝福..." class="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:outline-none focus:ring-2 focus:ring-morandi-warm/50 text-sm">
                     </div>
                 </div>
 
@@ -433,27 +453,6 @@
 
             <!-- Blessing Cards Stream -->
             <div id="blessing-wall" class="grid sm:grid-cols-2 gap-6">
-                <!-- Preset Card 1 -->
-                <div class="p-6 rounded-2xl bg-white border border-stone-100 shadow-sm">
-                    <div class="flex items-center justify-between mb-3">
-                        <span class="font-medium text-sm text-morandi-dark">陳小姐 (Sophia 大學閨蜜)</span>
-                        <span class="text-xs text-morandi-sage">Just now</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-morandi-dark/80 leading-relaxed font-light">
-                        「恭喜 Sophia！看到你們一路走來這麼幸福真的超級感動，祝你們白頭偕老，永浴愛河！」
-                    </p>
-                </div>
-
-                <!-- Preset Card 2 -->
-                <div class="p-6 rounded-2xl bg-white border border-stone-100 shadow-sm">
-                    <div class="flex items-center justify-between mb-3">
-                        <span class="font-medium text-sm text-morandi-dark">林先生 (Julian 公司好友)</span>
-                        <span class="text-xs text-morandi-sage">1 hour ago</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-morandi-dark/80 leading-relaxed font-light">
-                        「恭喜杰哥娶得美嬌娘！祝你們新婚快樂，早生貴子，婚後也要繼續幸福滿滿喔！」
-                    </p>
-                </div>
             </div>
         </div>
     </section>
