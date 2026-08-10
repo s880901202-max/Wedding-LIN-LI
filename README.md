@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="zh-TW" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -292,6 +293,91 @@
                 </div>
             </div>
 
+            <!-- 交通與停車資訊 Section -->
+            <div class="bg-morandi-ivory/60 rounded-3xl p-8 sm:p-12 border border-stone-200/60 shadow-soft-glow mb-12">
+                <div class="text-center mb-10">
+                    <span class="font-script text-2xl text-morandi-warm">Transportation</span>
+                    <h3 class="font-cormorant text-2xl font-semibold text-morandi-dark mt-1">交通與停車指南</h3>
+                    <p class="text-xs text-morandi-sage mt-1">憶滿樓婚宴會館 • 雲林縣大埤鄉北和村信義路20號</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- 自行開車 & 停車資訊 -->
+                    <div class="bg-white p-6 rounded-2xl border border-stone-100 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-3 text-morandi-warm">
+                                <div class="w-10 h-10 rounded-xl bg-morandi-ivory flex items-center justify-center">
+                                    <i data-lucide="car" class="w-5 h-5"></i>
+                                </div>
+                                <h4 class="font-medium text-morandi-dark text-base">自行開車 / 停車</h4>
+                            </div>
+                            <ul class="text-xs text-morandi-dark/80 space-y-2 leading-relaxed">
+                                <li class="flex items-start gap-1.5">
+                                    <span class="text-morandi-warm font-bold">•</span>
+                                    <span>國道一號下<strong>斗南交流道</strong>，接台1線往大埤方向行駛約 8-10 分鐘即可抵達。</span>
+                                </li>
+                                <li class="flex items-start gap-1.5">
+                                    <span class="text-morandi-warm font-bold">•</span>
+                                    <span>會館附設<strong>賓客專屬免費停車場</strong>及大型遊覽車停車區，停車十分便利。</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 台鐵火車 -->
+                    <div class="bg-white p-6 rounded-2xl border border-stone-100 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-3 text-morandi-warm">
+                                <div class="w-10 h-10 rounded-xl bg-morandi-ivory flex items-center justify-center">
+                                    <i data-lucide="train" class="w-5 h-5"></i>
+                                </div>
+                                <h4 class="font-medium text-morandi-dark text-base">搭乘台鐵火車</h4>
+                            </div>
+                            <ul class="text-xs text-morandi-dark/80 space-y-2 leading-relaxed">
+                                <li class="flex items-start gap-1.5">
+                                    <span class="text-morandi-warm font-bold">•</span>
+                                    <span>請搭乘台鐵至<strong>「斗南火車站」</strong>下車。</span>
+                                </li>
+                                <li class="flex items-start gap-1.5">
+                                    <span class="text-morandi-warm font-bold">•</span>
+                                    <span>於站前轉搭計程車，車程約 <strong>10 分鐘</strong>即可輕鬆抵達婚宴會館。</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 台灣高鐵 -->
+                    <div class="bg-white p-6 rounded-2xl border border-stone-100 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-3 text-morandi-warm">
+                                <div class="w-10 h-10 rounded-xl bg-morandi-ivory flex items-center justify-center">
+                                    <i data-lucide="navigation" class="w-5 h-5"></i>
+                                </div>
+                                <h4 class="font-medium text-morandi-dark text-base">搭乘台灣高鐵</h4>
+                            </div>
+                            <ul class="text-xs text-morandi-dark/80 space-y-2 leading-relaxed">
+                                <li class="flex items-start gap-1.5">
+                                    <span class="text-morandi-warm font-bold">•</span>
+                                    <span>請搭乘高鐵至<strong>「高鐵雲林站」</strong>下車。</span>
+                                </li>
+                                <li class="flex items-start gap-1.5">
+                                    <span class="text-morandi-warm font-bold">•</span>
+                                    <span>出站後轉搭計程車或預約接駁，車程約 <strong>25-30 分鐘</strong>抵達。</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google 地圖按鈕 -->
+                <div class="mt-8 text-center">
+                    <a href="https://maps.google.com/?cid=12570166551430556052" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-morandi-warm text-white text-xs font-medium hover:bg-[#c29263] transition shadow-md hover:shadow-lg">
+                        <i data-lucide="map-pin" class="w-4 h-4"></i>
+                        <span>開啟 Google 地圖一鍵導航</span>
+                    </a>
+                </div>
+            </div>
+
             <!-- Program Timeline -->
             <div class="bg-white rounded-3xl p-8 sm:p-12 border border-stone-100 shadow-soft-glow">
                 <h3 class="font-cormorant text-2xl font-semibold text-center text-morandi-dark mb-8">當日活動流程 / Itinerary</h3>
@@ -494,7 +580,7 @@
     </div>
 
     <!-- 指定音訊標籤 (優先載入 myppt.cc 連結) -->
-    <audio id="bgm-audio" loop preload="auto" src="https://myppt.cc/4ArxX">
+    <audio id="bgm-audio" loop preload="auto" playsinline src="https://myppt.cc/3KsJw">
     </audio>
 
     <script>
@@ -632,56 +718,74 @@
         const bgmAudio = document.getElementById('bgm-audio');
         const bgmTooltip = document.getElementById('bgm-tooltip');
 
-        // 柔和浪漫的卡農 (Canon in D) 琶音音符 (Hz)
-        const canonMelody = [
-            293.66, 370.00, 440.00, 587.33, // D
-            220.00, 277.18, 329.63, 440.00, // A
-            246.94, 293.66, 370.00, 493.88, // Bm
-            185.00, 220.00, 277.18, 370.00, // F#m
-            196.00, 246.94, 293.66, 392.00, // G
-            293.66, 370.00, 440.00, 587.33, // D
-            196.00, 246.94, 293.66, 392.00, // G
-            220.00, 277.18, 329.63, 440.00  // A
+        // 經典卡農 (Canon in D) 鋼琴伴奏和絃與分解琶音 (Hz)
+        const canonChords = [
+            [146.83, 293.66, 370.00, 440.00], // D Major
+            [110.00, 220.00, 277.18, 329.63], // A Major
+            [123.47, 246.94, 293.66, 370.00], // B Minor
+            [92.50, 185.00, 277.18, 370.00],  // F# Minor
+            [98.00, 196.00, 246.94, 293.66],  // G Major
+            [146.83, 293.66, 370.00, 440.00], // D Major
+            [98.00, 196.00, 246.94, 293.66],  // G Major
+            [110.00, 220.00, 277.18, 329.63]  // A Major
         ];
 
-        function playSoftNote(freq, duration = 1.4) {
+        // 模擬鋼琴聲學音色與琴槌擊弦音量包絡 (Piano Sound Synthesis)
+        function playPianoNote(freq, duration = 2.2, volume = 0.07) {
             if (!audioCtx || audioCtx.state !== 'running') return;
             try {
-                const osc = audioCtx.createOscillator();
+                const now = audioCtx.currentTime;
+                const oscFund = audioCtx.createOscillator(); // 鋼琴基音
+                const oscHarmonic = audioCtx.createOscillator(); // 高階諧波
                 const gain = audioCtx.createGain();
                 
-                osc.type = 'sine'; // 柔和正弦波
-                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                oscFund.type = 'triangle'; // 三角波模擬鋼琴鋼弦溫潤音色
+                oscHarmonic.type = 'sine';
                 
-                // 淡入淡出漸層音量包絡 (Soft Bell / Chime)
-                gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.06, audioCtx.currentTime + 0.1);
-                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+                oscFund.frequency.setValueAtTime(freq, now);
+                oscHarmonic.frequency.setValueAtTime(freq * 2, now); // 倍頻增加琴質真實感
                 
-                osc.connect(gain);
+                // 鋼琴瞬態敲擊 (Attack) 與自然指數衰減 (Exponential Decay)
+                gain.gain.setValueAtTime(0.0001, now);
+                gain.gain.linearRampToValueAtTime(volume, now + 0.015);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+                
+                oscFund.connect(gain);
+                oscHarmonic.connect(gain);
                 gain.connect(audioCtx.destination);
                 
-                osc.start();
-                osc.stop(audioCtx.currentTime + duration);
+                oscFund.start(now);
+                oscHarmonic.start(now);
+                oscFund.stop(now + duration);
+                oscHarmonic.stop(now + duration);
             } catch(e) {}
         }
 
         function startBGM() {
-            // 優先播放您指定的 MP3 音樂連結 (https://myppt.cc/4ArxX)
+            // 優先播放指定 MP3 音樂連結 (https://myppt.cc/3KsJw)
             if (bgmAudio && bgmAudio.src && bgmAudio.src !== window.location.href) {
                 bgmAudio.play().then(() => {
                     updateBGMUI(true);
                 }).catch((err) => {
-                    console.warn("指定音樂來源加載例外，啟用浪漫水晶音效備援:", err);
-                    startWebAudioBGM();
+                    console.warn("音樂連線遭遇網路限制，系統已自動無縫啟用『卡農鋼琴伴奏』:", err);
+                    startPianoCanonBGM();
                 });
                 return;
             }
 
-            startWebAudioBGM();
+            startPianoCanonBGM();
         }
 
-        function startWebAudioBGM() {
+        // 監聽音訊載入失敗事件，確保即時無縫切換至 Canon 鋼琴伴奏
+        bgmAudio.addEventListener('error', () => {
+            console.warn("音訊資源無法順利載入，無縫切換至 Canon 鋼琴伴奏");
+            if (isPlaying) {
+                startPianoCanonBGM();
+            }
+        });
+
+        // 備援：卡農鋼琴伴奏動態演奏
+        function startPianoCanonBGM() {
             if (!audioCtx) {
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             }
@@ -689,13 +793,24 @@
                 audioCtx.resume();
             }
             
-            let noteIdx = 0;
+            let chordIdx = 0;
+            let noteInChordIdx = 0;
             if (bgmInterval) clearInterval(bgmInterval);
             
+            // 鋼琴伴奏琶音節奏 (每 380毫秒 彈奏一個和絃音符)
             bgmInterval = setInterval(() => {
-                playSoftNote(canonMelody[noteIdx], 1.6);
-                noteIdx = (noteIdx + 1) % canonMelody.length;
-            }, 420);
+                const currentChord = canonChords[chordIdx];
+                const noteFreq = currentChord[noteInChordIdx];
+                
+                // 彈奏當前鋼琴伴奏音符
+                playPianoNote(noteFreq, 2.0, noteInChordIdx === 0 ? 0.09 : 0.06);
+                
+                noteInChordIdx++;
+                if (noteInChordIdx >= currentChord.length) {
+                    noteInChordIdx = 0;
+                    chordIdx = (chordIdx + 1) % canonChords.length;
+                }
+            }, 380);
             
             updateBGMUI(true);
         }
