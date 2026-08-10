@@ -493,8 +493,9 @@
         </button>
     </div>
 
-    <!-- 背景音樂 HTML 標籤 -->
-    <audio id="bgm-audio" src="https://myppt.cc/4ArxX" loop preload="auto"></audio>
+    <!-- 指定音訊標籤 (優先載入 myppt.cc 連結) -->
+    <audio id="bgm-audio" loop preload="auto" src="https://myppt.cc/4ArxX">
+    </audio>
 
     <script>
         // 初始化 Lucide 圖標
@@ -665,7 +666,22 @@
             } catch(e) {}
         }
 
-        function playSynthesizedBGM() {
+        function startBGM() {
+            // 優先播放您指定的 MP3 音樂連結 (https://myppt.cc/4ArxX)
+            if (bgmAudio && bgmAudio.src && bgmAudio.src !== window.location.href) {
+                bgmAudio.play().then(() => {
+                    updateBGMUI(true);
+                }).catch((err) => {
+                    console.warn("指定音樂來源加載例外，啟用浪漫水晶音效備援:", err);
+                    startWebAudioBGM();
+                });
+                return;
+            }
+
+            startWebAudioBGM();
+        }
+
+        function startWebAudioBGM() {
             if (!audioCtx) {
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             }
@@ -682,22 +698,6 @@
             }, 420);
             
             updateBGMUI(true);
-        }
-
-        function startBGM() {
-            // 如果有設定 MP3 網址，優先嘗試播放 MP3
-            if (bgmAudio && bgmAudio.src && bgmAudio.src !== window.location.href) {
-                bgmAudio.play().then(() => {
-                    updateBGMUI(true);
-                }).catch((err) => {
-                    console.log("指定網址音樂播放失敗或被阻擋，切換為備用水晶浪漫音樂:", err);
-                    playSynthesizedBGM();
-                });
-                return;
-            }
-
-            // 無 MP3 網址時，啟用備用水晶浪漫音樂
-            playSynthesizedBGM();
         }
 
         function stopBGM() {
