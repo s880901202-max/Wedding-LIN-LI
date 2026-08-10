@@ -483,8 +483,8 @@
 
     <!-- 懸浮背景音樂控制按鈕 -->
     <div class="fixed bottom-6 right-6 z-50 flex items-center gap-2">
-        <span id="bgm-tooltip" class="hidden sm:inline-block px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-xs text-morandi-dark border border-stone-200/80 shadow-md">
-            🎵 點擊可關閉音樂
+        <span id="bgm-tooltip" class="hidden sm:inline-block px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-xs text-morandi-dark border border-stone-200/80 shadow-md animate-pulse">
+            🎵 點擊播放音樂
         </span>
         <button id="bgm-toggle-btn" class="relative w-12 h-12 rounded-full bg-white/90 backdrop-blur-md border border-morandi-warm/40 shadow-lg text-morandi-warm flex items-center justify-center hover:scale-105 transition duration-300 group focus:outline-none" title="播放/暫停背景音樂">
             <i data-lucide="music" id="bgm-icon" class="w-5 h-5 transition-transform"></i>
@@ -494,7 +494,7 @@
     </div>
 
     <!-- 背景音樂 HTML 標籤 -->
-    <audio id="bgm-audio" src="https://myppt.cc/4ArxX" loop autoplay preload="auto"></audio>
+    <audio id="bgm-audio" src="https://myppt.cc/4ArxX" loop preload="auto"></audio>
 
     <script>
         // 初始化 Lucide 圖標
@@ -735,20 +735,19 @@
             }
         });
 
-        // 預設進入網頁嘗試開啟音樂，若受瀏覽器權限限制，則於首次互動（點擊/觸摸/滾動）時立即播放
+        // 賓客點擊畫面任意位置時自動啟用音樂 (遵守瀏覽器自動播放規則)
         function handleFirstUserGesture() {
             if (!isPlaying) {
                 startBGM();
             }
+            document.removeEventListener('click', handleFirstUserGesture);
+            document.removeEventListener('touchstart', handleFirstUserGesture);
         }
-        ['click', 'touchstart', 'scroll', 'pointerdown'].forEach(evt => {
-            document.addEventListener(evt, handleFirstUserGesture, { once: true, passive: true });
-        });
+        document.addEventListener('click', handleFirstUserGesture, { once: true });
+        document.addEventListener('touchstart', handleFirstUserGesture, { once: true });
 
         window.onload = function() {
             initCountdown();
-            // 頁面載入完成時預設開啟音樂
-            startBGM();
         };
     </script>
 </body>
