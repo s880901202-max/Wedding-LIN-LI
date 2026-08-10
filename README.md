@@ -145,7 +145,7 @@
                     Lin <span class="font-script text-morandi-warm text-4xl sm:text-6xl mx-2">&</span> Li
                 </h1>
                 <p class="text-base sm:text-lg text-morandi-dark/80 tracking-widest pt-2">
-                    林 先生 <span class="mx-2 text-morandi-warm">|</span> 李 小姐
+                    林 義哲 <span class="mx-2 text-morandi-warm">|</span> 李 念蓁
                 </p>
             </div>
 
