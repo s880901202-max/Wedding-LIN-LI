@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="zh-TW" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -481,6 +482,21 @@
         </div>
     </div>
 
+    <!-- 懸浮背景音樂控制按鈕 -->
+    <div class="fixed bottom-6 right-6 z-50 flex items-center gap-2">
+        <span id="bgm-tooltip" class="hidden sm:inline-block px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-xs text-morandi-dark border border-stone-200/80 shadow-md">
+            🎵 點擊可關閉音樂
+        </span>
+        <button id="bgm-toggle-btn" class="relative w-12 h-12 rounded-full bg-white/90 backdrop-blur-md border border-morandi-warm/40 shadow-lg text-morandi-warm flex items-center justify-center hover:scale-105 transition duration-300 group focus:outline-none" title="播放/暫停背景音樂">
+            <i data-lucide="music" id="bgm-icon" class="w-5 h-5 transition-transform"></i>
+            <!-- 播放時的擴散光圈 -->
+            <span id="bgm-pulse" class="absolute -inset-1 rounded-full border border-morandi-warm/40 animate-ping opacity-0 pointer-events-none"></span>
+        </button>
+    </div>
+
+    <!-- 背景音樂 HTML 標籤 -->
+    <audio id="bgm-audio" src="https://myppt.cc/4ArxX" loop autoplay preload="auto"></audio>
+
     <script>
         // 初始化 Lucide 圖標
         lucide.createIcons();
@@ -605,8 +621,135 @@
             }, 300);
         });
 
+        // 背景音樂控制 (Web Audio API 柔和水晶婚禮旋律 + MP3 雙模支援)
+        let isPlaying = false;
+        let audioCtx = null;
+        let bgmInterval = null;
+
+        const bgmBtn = document.getElementById('bgm-toggle-btn');
+        const bgmIcon = document.getElementById('bgm-icon');
+        const bgmPulse = document.getElementById('bgm-pulse');
+        const bgmAudio = document.getElementById('bgm-audio');
+        const bgmTooltip = document.getElementById('bgm-tooltip');
+
+        // 柔和浪漫的卡農 (Canon in D) 琶音音符 (Hz)
+        const canonMelody = [
+            293.66, 370.00, 440.00, 587.33, // D
+            220.00, 277.18, 329.63, 440.00, // A
+            246.94, 293.66, 370.00, 493.88, // Bm
+            185.00, 220.00, 277.18, 370.00, // F#m
+            196.00, 246.94, 293.66, 392.00, // G
+            293.66, 370.00, 440.00, 587.33, // D
+            196.00, 246.94, 293.66, 392.00, // G
+            220.00, 277.18, 329.63, 440.00  // A
+        ];
+
+        function playSoftNote(freq, duration = 1.4) {
+            if (!audioCtx || audioCtx.state !== 'running') return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.type = 'sine'; // 柔和正弦波
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                
+                // 淡入淡出漸層音量包絡 (Soft Bell / Chime)
+                gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.06, audioCtx.currentTime + 0.1);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e) {}
+        }
+
+        function playSynthesizedBGM() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            
+            let noteIdx = 0;
+            if (bgmInterval) clearInterval(bgmInterval);
+            
+            bgmInterval = setInterval(() => {
+                playSoftNote(canonMelody[noteIdx], 1.6);
+                noteIdx = (noteIdx + 1) % canonMelody.length;
+            }, 420);
+            
+            updateBGMUI(true);
+        }
+
+        function startBGM() {
+            // 如果有設定 MP3 網址，優先嘗試播放 MP3
+            if (bgmAudio && bgmAudio.src && bgmAudio.src !== window.location.href) {
+                bgmAudio.play().then(() => {
+                    updateBGMUI(true);
+                }).catch((err) => {
+                    console.log("指定網址音樂播放失敗或被阻擋，切換為備用水晶浪漫音樂:", err);
+                    playSynthesizedBGM();
+                });
+                return;
+            }
+
+            // 無 MP3 網址時，啟用備用水晶浪漫音樂
+            playSynthesizedBGM();
+        }
+
+        function stopBGM() {
+            if (bgmAudio && !bgmAudio.paused) {
+                bgmAudio.pause();
+            }
+            if (bgmInterval) clearInterval(bgmInterval);
+            if (audioCtx && audioCtx.state === 'running') {
+                audioCtx.suspend();
+            }
+            updateBGMUI(false);
+        }
+
+        function updateBGMUI(playing) {
+            isPlaying = playing;
+            if (playing) {
+                bgmIcon.setAttribute('data-lucide', 'disc');
+                bgmIcon.classList.add('animate-spin');
+                bgmPulse.classList.remove('opacity-0');
+                if (bgmTooltip) bgmTooltip.classList.add('hidden');
+            } else {
+                bgmIcon.setAttribute('data-lucide', 'music');
+                bgmIcon.classList.remove('animate-spin');
+                bgmPulse.classList.add('opacity-0');
+            }
+            lucide.createIcons();
+        }
+
+        bgmBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (isPlaying) {
+                stopBGM();
+            } else {
+                startBGM();
+            }
+        });
+
+        // 預設進入網頁嘗試開啟音樂，若受瀏覽器權限限制，則於首次互動（點擊/觸摸/滾動）時立即播放
+        function handleFirstUserGesture() {
+            if (!isPlaying) {
+                startBGM();
+            }
+        }
+        ['click', 'touchstart', 'scroll', 'pointerdown'].forEach(evt => {
+            document.addEventListener(evt, handleFirstUserGesture, { once: true, passive: true });
+        });
+
         window.onload = function() {
             initCountdown();
+            // 頁面載入完成時預設開啟音樂
+            startBGM();
         };
     </script>
 </body>
