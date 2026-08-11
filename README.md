@@ -448,7 +448,7 @@
                                 <span class="text-xs font-medium text-morandi-dark">🤵 義哲的親友</span>
                             </label>
                             <label class="flex items-center p-3 rounded-xl border border-stone-200 bg-white cursor-pointer hover:border-morandi-warm transition">
-                                <input type="radio" name="entry.1432689929" value="👰 念蓁的親友" class="accent-[#d4a373] mr-2">
+                                <input type="radio" name="entry.1432689929" value="👰念蓁的親友" class="accent-[#d4a373] mr-2">
                                 <span class="text-xs font-medium text-morandi-dark">👰 念蓁的親友</span>
                             </label>
                         </div>
@@ -464,27 +464,39 @@
                             <option value="2位">2位</option>
                             <option value="3位">3位</option>
                             <option value="4位">4位</option>
-                            <option value="5位或以上">5位或以上</option>
+                            <option value="5位">5位</option>
+                            <option value="6位">6位</option>
+                            <option value="7位">7位</option>
+                            <option value="8位">8位</option>
+                            <option value="9位">9位</option>
+                            <option value="10位">10位</option>
                         </select>
                     </div>
                     <div>
                         <label class="block text-xs uppercase font-semibold text-morandi-dark tracking-wider mb-2">素食需求</label>
                         <select name="entry.1054835683" class="w-full px-3 py-3 rounded-xl border border-stone-200 bg-white focus:outline-none focus:ring-2 focus:ring-morandi-warm/50 text-xs">
-                            <option value="不需要">不需要</option>
-                            <option value="1位">1位</option>
-                            <option value="2位">2位</option>
-                            <option value="3位">3位</option>
-                            <option value="4位">4位</option>
-                            <option value="5位或以上">5位或以上</option>
+                            <option value="0">0 (無需求)</option>
+                            <option value="1">1位</option>
+                            <option value="2">2位</option>
+                            <option value="3">3位</option>
+                            <option value="4">4位</option>
+                            <option value="5">5位</option>
+                            <option value="6">6位</option>
+                            <option value="7">7位</option>
+                            <option value="8">8位</option>
+                            <option value="9">9位</option>
+                            <option value="10">10位</option>
                         </select>
                     </div>
                     <div>
                         <label class="block text-xs uppercase font-semibold text-morandi-dark tracking-wider mb-2">兒童座椅需求</label>
                         <select name="entry.2128240145" class="w-full px-3 py-3 rounded-xl border border-stone-200 bg-white focus:outline-none focus:ring-2 focus:ring-morandi-warm/50 text-xs">
-                            <option value="不需要">不需要</option>
-                            <option value="1張">1張</option>
-                            <option value="2張">2張</option>
-                            <option value="3張">3張</option>
+                            <option value="0">0 (無需求)</option>
+                            <option value="1">1張</option>
+                            <option value="2">2張</option>
+                            <option value="3">3張</option>
+                            <option value="4">4張</option>
+                            <option value="5">5張</option>
                         </select>
                     </div>
                 </div>
@@ -498,8 +510,8 @@
                             <span class="text-xs font-medium text-morandi-dark">需要，請寄紙本喜帖給我</span>
                         </label>
                         <label class="flex items-center p-3 rounded-xl border border-stone-200 bg-white cursor-pointer hover:border-morandi-warm transition">
-                            <input type="radio" name="entry.2074213116" value="不需要" class="accent-[#d4a373] mr-2">
-                            <span class="text-xs font-medium text-morandi-dark">不需要</span>
+                            <input type="radio" name="entry.2074213116" value="不用，我已經記起來婚禮資訊了" class="accent-[#d4a373] mr-2">
+                            <span class="text-xs font-medium text-morandi-dark">不用，我已經記起來婚禮資訊了</span>
                         </label>
                     </div>
                 </div>
@@ -565,22 +577,6 @@
             </button>
         </div>
     </div>
-
-    <!-- 懸浮背景音樂控制按鈕 -->
-    <div class="fixed bottom-6 right-6 z-50 flex items-center gap-2">
-        <span id="bgm-tooltip" class="hidden sm:inline-block px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-xs text-morandi-dark border border-stone-200/80 shadow-md animate-pulse">
-            🎵 點擊播放音樂
-        </span>
-        <button id="bgm-toggle-btn" class="relative w-12 h-12 rounded-full bg-white/90 backdrop-blur-md border border-morandi-warm/40 shadow-lg text-morandi-warm flex items-center justify-center hover:scale-105 transition duration-300 group focus:outline-none" title="播放/暫停背景音樂">
-            <i data-lucide="music" id="bgm-icon" class="w-5 h-5 transition-transform"></i>
-            <!-- 播放時的擴散光圈 -->
-            <span id="bgm-pulse" class="absolute -inset-1 rounded-full border border-morandi-warm/40 animate-ping opacity-0 pointer-events-none"></span>
-        </button>
-    </div>
-
-    <!-- 指定音訊標籤 (優先載入 myppt.cc 連結) -->
-    <audio id="bgm-audio" loop preload="auto" playsinline src="https://myppt.cc/3KsJw">
-    </audio>
 
     <script>
         // 初始化 Lucide 圖標
@@ -705,160 +701,6 @@
                 modalSuccess.classList.add('hidden');
             }, 300);
         });
-
-        // 背景音樂控制 (Web Audio API 柔和水晶婚禮旋律 + MP3 雙模支援)
-        let isPlaying = false;
-        let audioCtx = null;
-        let bgmInterval = null;
-
-        const bgmBtn = document.getElementById('bgm-toggle-btn');
-        const bgmIcon = document.getElementById('bgm-icon');
-        const bgmPulse = document.getElementById('bgm-pulse');
-        const bgmAudio = document.getElementById('bgm-audio');
-        const bgmTooltip = document.getElementById('bgm-tooltip');
-
-        // 經典卡農 (Canon in D) 鋼琴伴奏和絃與分解琶音 (Hz)
-        const canonChords = [
-            [146.83, 293.66, 370.00, 440.00], // D Major
-            [110.00, 220.00, 277.18, 329.63], // A Major
-            [123.47, 246.94, 293.66, 370.00], // B Minor
-            [92.50, 185.00, 277.18, 370.00],  // F# Minor
-            [98.00, 196.00, 246.94, 293.66],  // G Major
-            [146.83, 293.66, 370.00, 440.00], // D Major
-            [98.00, 196.00, 246.94, 293.66],  // G Major
-            [110.00, 220.00, 277.18, 329.63]  // A Major
-        ];
-
-        // 模擬鋼琴聲學音色與琴槌擊弦音量包絡 (Piano Sound Synthesis)
-        function playPianoNote(freq, duration = 2.2, volume = 0.07) {
-            if (!audioCtx || audioCtx.state !== 'running') return;
-            try {
-                const now = audioCtx.currentTime;
-                const oscFund = audioCtx.createOscillator(); // 鋼琴基音
-                const oscHarmonic = audioCtx.createOscillator(); // 高階諧波
-                const gain = audioCtx.createGain();
-                
-                oscFund.type = 'triangle'; // 三角波模擬鋼琴鋼弦溫潤音色
-                oscHarmonic.type = 'sine';
-                
-                oscFund.frequency.setValueAtTime(freq, now);
-                oscHarmonic.frequency.setValueAtTime(freq * 2, now); // 倍頻增加琴質真實感
-                
-                // 鋼琴瞬態敲擊 (Attack) 與自然指數衰減 (Exponential Decay)
-                gain.gain.setValueAtTime(0.0001, now);
-                gain.gain.linearRampToValueAtTime(volume, now + 0.015);
-                gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
-                
-                oscFund.connect(gain);
-                oscHarmonic.connect(gain);
-                gain.connect(audioCtx.destination);
-                
-                oscFund.start(now);
-                oscHarmonic.start(now);
-                oscFund.stop(now + duration);
-                oscHarmonic.stop(now + duration);
-            } catch(e) {}
-        }
-
-        function startBGM() {
-            // 優先播放指定 MP3 音樂連結 (https://myppt.cc/3KsJw)
-            if (bgmAudio && bgmAudio.src && bgmAudio.src !== window.location.href) {
-                bgmAudio.play().then(() => {
-                    updateBGMUI(true);
-                }).catch((err) => {
-                    console.warn("音樂連線遭遇網路限制，系統已自動無縫啟用『卡農鋼琴伴奏』:", err);
-                    startPianoCanonBGM();
-                });
-                return;
-            }
-
-            startPianoCanonBGM();
-        }
-
-        // 監聽音訊載入失敗事件，確保即時無縫切換至 Canon 鋼琴伴奏
-        bgmAudio.addEventListener('error', () => {
-            console.warn("音訊資源無法順利載入，無縫切換至 Canon 鋼琴伴奏");
-            if (isPlaying) {
-                startPianoCanonBGM();
-            }
-        });
-
-        // 備援：卡農鋼琴伴奏動態演奏
-        function startPianoCanonBGM() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-            
-            let chordIdx = 0;
-            let noteInChordIdx = 0;
-            if (bgmInterval) clearInterval(bgmInterval);
-            
-            // 鋼琴伴奏琶音節奏 (每 380毫秒 彈奏一個和絃音符)
-            bgmInterval = setInterval(() => {
-                const currentChord = canonChords[chordIdx];
-                const noteFreq = currentChord[noteInChordIdx];
-                
-                // 彈奏當前鋼琴伴奏音符
-                playPianoNote(noteFreq, 2.0, noteInChordIdx === 0 ? 0.09 : 0.06);
-                
-                noteInChordIdx++;
-                if (noteInChordIdx >= currentChord.length) {
-                    noteInChordIdx = 0;
-                    chordIdx = (chordIdx + 1) % canonChords.length;
-                }
-            }, 380);
-            
-            updateBGMUI(true);
-        }
-
-        function stopBGM() {
-            if (bgmAudio && !bgmAudio.paused) {
-                bgmAudio.pause();
-            }
-            if (bgmInterval) clearInterval(bgmInterval);
-            if (audioCtx && audioCtx.state === 'running') {
-                audioCtx.suspend();
-            }
-            updateBGMUI(false);
-        }
-
-        function updateBGMUI(playing) {
-            isPlaying = playing;
-            if (playing) {
-                bgmIcon.setAttribute('data-lucide', 'disc');
-                bgmIcon.classList.add('animate-spin');
-                bgmPulse.classList.remove('opacity-0');
-                if (bgmTooltip) bgmTooltip.classList.add('hidden');
-            } else {
-                bgmIcon.setAttribute('data-lucide', 'music');
-                bgmIcon.classList.remove('animate-spin');
-                bgmPulse.classList.add('opacity-0');
-            }
-            lucide.createIcons();
-        }
-
-        bgmBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (isPlaying) {
-                stopBGM();
-            } else {
-                startBGM();
-            }
-        });
-
-        // 賓客點擊畫面任意位置時自動啟用音樂 (遵守瀏覽器自動播放規則)
-        function handleFirstUserGesture() {
-            if (!isPlaying) {
-                startBGM();
-            }
-            document.removeEventListener('click', handleFirstUserGesture);
-            document.removeEventListener('touchstart', handleFirstUserGesture);
-        }
-        document.addEventListener('click', handleFirstUserGesture, { once: true });
-        document.addEventListener('touchstart', handleFirstUserGesture, { once: true });
 
         window.onload = function() {
             initCountdown();
