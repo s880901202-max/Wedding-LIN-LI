@@ -777,7 +777,7 @@
         	
         	
         	const GOOGLE_SCRIPT_URL =
-        		"https://script.google.com/macros/s/AKfycbzd87QEL35eMUgLEhJdpYmJqOitJNX0G1x6sDB7eArLw1vTvjWC399QozkU5osmaK6W8w/exec";
+        		"https://script.google.com/macros/s/AKfycbxr2jalKdyQfnn7AsCBmBNSYKFHu6dSrw10vJQrOh9G98kpg4BdVPzl8WRdP2ohiN_OSA/exec";
         
         	const rsvpForm = document.getElementById('rsvp-form');
         	const submitBtn = document.getElementById('submit-btn');
